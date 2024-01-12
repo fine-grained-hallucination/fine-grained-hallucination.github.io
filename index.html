@@ -113,7 +113,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">FAVA</span> detects and edits hallucinations in LM outputs, outperforming ChatGPT and LLama2 Chat on two tasks.  
+        <span class="dnerf">FAVA</span> detects and edits hallucinations in LM outputs, outperforming ChatGPT and LLama2 Chat on both detection and editing tasks.  
       </h2>
       <img src="static/images/teaser.png" alt="BUFFET teaser.">
     </div>
@@ -128,10 +128,10 @@
         <div class="content has-text-justified">
           <p><b>The issue: Diverse Hallucinations Across LM Outputs</b><br>Large language models (LLMs) are prone to generate diverse factually incorrect statements, which are widely called hallucinations. 
             Current approaches predominantly focus on coarse-grained automatic hallucination detection or editing, overlooking nuanced error levels.  
-         <p><b>What is <b><span style="color: blue">FAVA</span></b>?</b><br>
-           <span style="color: red"><b>Factuality Verification with Augmented Knowledge (FAVA) </b></span> a retrieval-augmented LM by carefully designing synthetic data generations and fine-tuning an expert LM to detect and correct fine-grained hallucinations.
-            <p><b>How good is <b><span style="color: blue">FAVA</span></b>?</b><br>
-            <b><span style="color: blue">FAVA</span> outperforms both ChatGPT and Llama 2-13B on editing and detection tasks.</b>. 
+         <p><b>What is <b><span style="color: green">FAVA</span></b>?</b><br>
+           <span style="color: green"><b>Factuality Verification with Augmented Knowledge (FAVA) </b></span> a retrieval-augmented LM by carefully designing synthetic data generations and fine-tuning an expert LM to detect and correct fine-grained hallucinations using our novel hallucination taxonomy.
+            <p><b>How good is <b><span style="color: green">FAVA</span></b>?</b><br>
+            <b><span style="color: green">FAVA</span> outperforms both ChatGPT and Llama 2-13B on editing and detection tasks.</b>. 
             On our benchmark, our automatic and human evaluations show that FAVA significantly outperforms ChatGPT on fine-grained hallucination detection by up to 38%, and we see 5-10% FactScore improvements on ChatGPT and Llama, measuring editing performance.
           </p>
         </div>
@@ -145,12 +145,43 @@
     <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
+        <h2 class="title is-3">Fine-grained Hallucination Taxonomy</h2>
+        <!-- Interpolating. -->
+        <!-- <h3 class="title is-4">Overall Model Performance</h3> -->
+        <div class="content has-text-justified">
+          <p>
+          Our novel hallucination taxonomy highlights six different types:
+          </p>
+          <ul>
+            <li><b>Entity: Contradictory entity errors are a sub-category within contradictory statement errors where an entity in a statement is incorrect and changing that single entity can make the entire sentence factually correct. </li>
+            <li><b>Relational: Contradictory relation errors are a sub-category within contradictory statement errors where a semantic relationship described in a statement is incorrect.</li>
+            <li><b>Contradictory: Contradictory statement errors refer to statements that entirely contradict relevant evidence from the web. These are cases where the full sentence is refuted by the information provided in a given reference.</li>
+            <li><b>Invented Statements: Invented errors refer to statements with concepts that do not exist based on world knowledge. These are cases when the language model generates a non-existent or entirely fabricated entity that doesn’t occur in any relevant evidence. This does not include fictional characters in creative work such as books or movies.</li>
+            <li><b>Subjective Statements: Subjective errors refer to an expression or proposition that lacks universal validity and is often influenced by personal beliefs, feelings, opinions, or biases and hence cannot be judged as factually correct. Specifically, this represents cases where the language model generates a statement that does not contain any factual proposition that can be grounded in relevant evidence.</li>
+            <li><b>Unverifiable Statements: Unverifiable errors refer to statements that contain factual propositions but cannot be grounded in world evidence. These are cases where the language model generates statements with facts, but none of the retrieved evidence from the web can directly support or contradict the fact (e.g., personal or private matters).</li>
+          </ul>
+          Below, we show an overview of our taxonomy. </br> 
+          <img src="static/images/taxonomy.png" alt="special tokens">
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+        
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <h2 class="title is-3">Fine-grained Hallucination Detection and Editing For Language Models</h2>
         <!-- Interpolating. -->
         <!-- <h3 class="title is-4">Overall Model Performance</h3> -->
         <div class="content has-text-justified">
           <p>
-          <span style="color: red"><b>FAVA</b></span> is trained on high-quality synthetic training data, and at inference, it identifies and fixes fine-grained factual errors, incorporating retrieved knowledge. 
+          <span style="color: green"><b>FAVA</b></span> is trained on high-quality synthetic training data, and at inference, it identifies and fixes fine-grained factual errors, incorporating retrieved knowledge. 
           </p>
           Below, we show our automatic data generation pipeline </br> 
           <img src="static/images/data_generation.png" alt="special tokens">
@@ -158,6 +189,10 @@
         <div class="columns is-vcentered interpolation-panel">
         </div>
         <br/>
+      </div>
+    </div>
+  </div>
+</section>
         
       <section class="section">
         <div class="container is-max-desktop">
